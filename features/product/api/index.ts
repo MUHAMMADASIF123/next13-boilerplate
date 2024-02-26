@@ -8,3 +8,9 @@ const api = makeApi(`${Env.API_SERVER_URL}`);
 const PRODUCT_URL = 'products';
 
 export const getProducts = (): Promise<ProductResponse> => api.get(PRODUCT_URL);
+
+
+
+export const getProductById = (productId: string): Promise<ProductResponse> => {
+  return api.get(`${PRODUCT_URL}/${productId}`);
+}

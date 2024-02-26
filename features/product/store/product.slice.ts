@@ -21,6 +21,9 @@ export const productSlice = createSlice({
     fetchAllSucceeded(state, action: PayloadAction<ProductResponse>) {
       state.product = action.payload;
     },
+    fetchSingleSucceeded(state, action: PayloadAction<ProductResponse>) {
+      state.product = action.payload; // Assuming ProductResponse can represent a single product as well
+    },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
@@ -36,6 +39,8 @@ export const productSlice = createSlice({
 export const productActions = {
   fetchAll: createAction(`${productSlice.name}/fetchAll`),
   fetchAllSucceeded: productSlice.actions.fetchAllSucceeded,
+   fetchSingle: createAction<string>(`${productSlice.name}/fetchSingle`), // Action to fetch a single product, expects product ID as payload
+  fetchSingleSucceeded: productSlice.actions.fetchSingleSucceeded,
 };
 
 // Selectors

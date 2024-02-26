@@ -8,8 +8,15 @@ import { ProductContainer } from '@/features/product';
 import { productActions } from '@/features/product/store';
 import dispatchSSR from '@/store/dispatchSSR';
 import { reduxWrapper } from '@/store/store';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 const ProductPage = () => {
+  const dispatch=useDispatch()
+  useEffect(()=>{
+    console.log('func1')
+     dispatch(productActions.fetchAll());
+  },[dispatch])
   return (
     <Main meta={<Meta title="Next13 Boilerplate" description="Next13 Boilerplate" />}>
       <ProductContainer />
@@ -17,11 +24,8 @@ const ProductPage = () => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = reduxWrapper.getServerSideProps(
-  (store: Store) =>
-    async (context: GetServerSidePropsContext): Promise<any> => {
-      await dispatchSSR(store, productActions.fetchAll());
-    },
-);
+
 
 export default ProductPage;
+
+
