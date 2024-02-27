@@ -3,7 +3,7 @@ import React, { memo } from 'react';
 const Footer = () => {
   return (
     <div className="border-t border-gray-300 py-8 text-center text-sm">
-      <span>Next13 Boilerplate</span>
+      <span>Next14 Boilerplate</span>
     </div>
   );
 };

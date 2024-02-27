@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState,  } from 'react';
 
 import map from 'lodash/map';
 import Image from 'next/image';
@@ -7,19 +7,49 @@ import { LazyLoad } from 'react-lazy-loader-component';
 import { UserAgent } from '@/libs/types/userAgent.type';
 
 import { Product } from '../../types';
+import { productActions } from '../../store/product.slice';
+import { log } from 'console';
+import { useDispatch } from 'react-redux';
+import Modal from '../Modal/Modal'
+
+
+
 
 interface ProductItemProps {
   userAgent: UserAgent;
   products?: Product[];
 }
 
+
+
 export const ProductItem = ({ products }: ProductItemProps) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+
+const dispatch=useDispatch()
+
+  const handleUpdateProduct = (productData:any) => {
+    console.log(productData,"productDataupdated")
+    dispatch(productActions.updateProduct({id:productData.id,productData:productData}));
+    dispatch(productActions.fetchAll());
+  };
+  const handleOpenModal = (product: Product) => {
+    // const product = products?.filter(p => p.id === product.id)
+    console.log(product,"product")
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
+
   return (
+    <>
     <div className="container mx-auto mt-7 mb-8 md:mt-[50px] md:mb-16">
       <div className="grid grid-flow-row grid-cols-1 gap-4 md:grid-cols-3 md:gap-8">
         {map(products, item => {
           return (
-            <div key={`${item.id}-${item.title}`}>
+            <div key={`${item.id}-${item.title} `
+            
+           }
+           onClick={() => handleOpenModal(item)} >
               <LazyLoad className="relative h-[173px] w-full md:h-[197px]" rootMargin="100px" threshold={0.95}>
                 <Image className="rounded-lg" src={item.thumbnail} alt={item.title} fill priority unoptimized />
               </LazyLoad>
@@ -33,6 +63,20 @@ export const ProductItem = ({ products }: ProductItemProps) => {
           );
         })}
       </div>
+     
     </div>
+    {selectedProduct && (
+        <Modal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          product={selectedProduct}
+          onSave={handleUpdateProduct}
+        />
+      )}
+    </>
   );
 };
+
+
+
+
