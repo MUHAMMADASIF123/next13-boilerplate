@@ -1,7 +1,7 @@
 import { AnyAction, SagaIterator } from '@redux-saga/core';
 import { call, put, takeEvery } from 'redux-saga/effects';
 
-import { getProducts, updateProduct, } from '../api';
+import { getProducts, updateProduct,deleteProduct } from '../api';
 import { Product,  ProductResponse } from '../types';
 import { productActions } from './product.slice';
 import { PayloadAction } from '@reduxjs/toolkit';
@@ -33,9 +33,18 @@ export function* onUpdateProduct(action: { payload: { id: number; productData: P
   }
 
 }
-// function isUpdateProductAction(action: AnyAction): action is PayloadAction<{ id: number; productData: Product; }> {
-//   return action.type === productActions.updateProduct.type;
-// }
+function* onDeleteProduct(action: PayloadAction<{ id: number }>) {
+  try {
+    const { id } = action.payload;
+    // Assuming you have an API function to delete a product
+    yield call(deleteProduct, id);
+    yield put(productActions.deleteProductSucceeded({ id }));
+  } catch (error) {
+    console.error('Delete product failed', error);
+    // Handle any errors, such as dispatching a failure action
+  }
+}
+
 
 
 
@@ -43,10 +52,9 @@ export function* onUpdateProduct(action: { payload: { id: number; productData: P
 export function* productWatcherSaga() {
   yield takeEvery(productActions.fetchAll.type, onGetProduct);
   yield takeEvery(productActions.updateProduct, onUpdateProduct);
+  yield takeEvery(productActions.deleteProduct, onDeleteProduct);
 }
 
 export default productWatcherSaga;
-function dispatch(arg0: { payload: { id: number; productData: Product; }; type: string; }) {
-  throw new Error('Function not implemented.');
-}
+
 

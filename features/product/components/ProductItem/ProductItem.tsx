@@ -39,6 +39,9 @@ const dispatch=useDispatch()
     setSelectedProduct(product);
     setIsModalOpen(true);
   };
+  const handleDeleteProduct = (id: number) => {
+    dispatch(productActions.deleteProduct({ id }));
+  };
 
   return (
     <>
@@ -71,6 +74,7 @@ const dispatch=useDispatch()
           onClose={() => setIsModalOpen(false)}
           product={selectedProduct}
           onSave={handleUpdateProduct}
+          onDelete={handleDeleteProduct}
         />
       )}
     </>

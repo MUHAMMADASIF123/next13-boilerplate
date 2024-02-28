@@ -38,7 +38,10 @@ export const productSlice = createSlice({
       } else {
         console.log(`Product with id ${id} not found.`);
       }
-    }
+    },
+    deleteProductSucceeded(state, action: PayloadAction<{ id: number }>) {
+      state.product.products = state.product.products.filter(product => product.id !== action.payload.id);
+    },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
@@ -56,6 +59,8 @@ export const productActions = {
   fetchAllSucceeded: productSlice.actions.fetchAllSucceeded,
   updateProduct : createAction<{ id: number; productData: Product }>(`${productSlice.name}/updateProduct`),
   updateProductSucceeded: productSlice.actions.updateProductSucceeded,
+  deleteProduct: createAction<{ id: number }>(`${productSlice.name}/deleteProduct`),
+  deleteProductSucceeded: productSlice.actions.deleteProductSucceeded,
 };
 
 // Selectors

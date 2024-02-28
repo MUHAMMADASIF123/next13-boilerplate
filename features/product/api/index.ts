@@ -23,3 +23,7 @@ const { id: productId, ...payloadWithoutId } = productData;
 console.log("payloadWithoutId",payloadWithoutId)
   return api.put(`${PRODUCT_URL}/${id}`, payloadWithoutId); 
 };
+
+export const deleteProduct = (id: number): Promise<void> => {
+  return api.delete(`${PRODUCT_URL}/${id}`);
+};

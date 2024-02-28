@@ -1,7 +1,7 @@
 // SimpleModal.jsx or a similar file
 import React, { useState,useEffect } from 'react';
 
-const Modal = ({ isOpen, onClose, product, onSave }) => {
+const Modal = ({ isOpen, onClose, product, onSave,onDelete }) => {
   const [editedProduct, setEditedProduct] = useState(product);
 console.log(editedProduct,"editedProduct")
   // Use useEffect to update state when the product prop changes
@@ -22,6 +22,10 @@ console.log(editedProduct,"editedProduct")
     onSave(editedProduct);
     onClose();
   };
+  const handleDelete=()=>{
+    onDelete(editedProduct.id)
+    onClose()
+  }
 
 
   return (
@@ -93,6 +97,7 @@ console.log(editedProduct,"editedProduct")
         {/* Add more fields as necessary */}
         <div className="flex justify-between">
           <button onClick={handleSave}>Save</button>
+          <button onClick={handleDelete}>Delete</button>
           <button onClick={onClose}>Close</button>
         </div>
         </div>

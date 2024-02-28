@@ -23,13 +23,16 @@ export const useProductService = () => {
   // Function to update a product
   console.log("this update product3")
   const updateProduct = useCallback((id: number, productData: Product) => dispatch(productActions.updateProduct({ id:id, productData })), [dispatch]);
-
+  const deleteProduct = useCallback((id: number) => {
+    dispatch(productActions.deleteProduct({ id }));
+  }, [dispatch]);
   const product = useAppSelector(selectProduct);
 
   return {
     product,
     fetchAllProduct,
-    updateProduct, // Make sure to return this function so it can be used in your components
+    updateProduct,
+    deleteProduct // Make sure to return this function so it can be used in your components
   };
 };
 
