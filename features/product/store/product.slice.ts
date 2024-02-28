@@ -14,7 +14,7 @@ const initialState: ProductState = {
 };
 interface UpdateProductPayload {
   id: number;
-  productData: Partial<Product>;
+  payload: Product;
 }
 
 // slice
@@ -26,24 +26,18 @@ export const productSlice = createSlice({
       state.product = action.payload;
     },
     updateProductSucceeded(state, action: PayloadAction<UpdateProductPayload>) {
-      // Extract the id and productData from the action's payload
-      const { id, productData } = action.payload;
-    
-      // Check if the products array exists and update the product
-     
-        state.product.products = state.product.products.map(product => {
-          if (product.id === id) {
-            // If the product ID matches, merge the existing product data with the updated product data
+      const { payload } = action;
+      const { id } = payload
 
-            return {
-              ...product,
-              ...productData,
-            };
-          }
-          // Otherwise, return the original product data
-          return product;
-        });
-  
+      const productIndex = state.product.products.findIndex(product => product.id === id);
+      if (productIndex !== -1) {
+        state.product.products[productIndex] = {
+          ...state.product.products[productIndex],
+          ...payload,
+        };
+      } else {
+        console.log(`Product with id ${id} not found.`);
+      }
     }
   },
   extraReducers: {
@@ -60,7 +54,7 @@ export const productSlice = createSlice({
 export const productActions = {
   fetchAll: createAction(`${productSlice.name}/fetchAll`),
   fetchAllSucceeded: productSlice.actions.fetchAllSucceeded,
-  updateProduct : createAction<{ id: number; productData: Partial<Product> }>('product/updateProduct'),
+  updateProduct : createAction<{ id: number; productData: Product }>(`${productSlice.name}/updateProduct`),
   updateProductSucceeded: productSlice.actions.updateProductSucceeded,
 };
 

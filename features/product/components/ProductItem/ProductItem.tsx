@@ -11,6 +11,7 @@ import { productActions } from '../../store/product.slice';
 import { log } from 'console';
 import { useDispatch } from 'react-redux';
 import Modal from '../Modal/Modal'
+import { update } from 'lodash';
 
 
 
@@ -29,9 +30,8 @@ export const ProductItem = ({ products }: ProductItemProps) => {
 const dispatch=useDispatch()
 
   const handleUpdateProduct = (productData:any) => {
-    console.log(productData,"productDataupdated")
-    dispatch(productActions.updateProduct({id:productData.id,productData:productData}));
-    dispatch(productActions.fetchAll());
+    console.log("this update product4")
+    dispatch(productActions.updateProduct({id:productData.id,productData}));
   };
   const handleOpenModal = (product: Product) => {
     // const product = products?.filter(p => p.id === product.id)
@@ -46,7 +46,7 @@ const dispatch=useDispatch()
       <div className="grid grid-flow-row grid-cols-1 gap-4 md:grid-cols-3 md:gap-8">
         {map(products, item => {
           return (
-            <div key={`${item.id}-${item.title} `
+            <div key={`${item.title} `
             
            }
            onClick={() => handleOpenModal(item)} >

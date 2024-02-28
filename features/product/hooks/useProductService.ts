@@ -8,10 +8,11 @@ import { Product, ProductResponse } from '../types';
 export type ProductServiceOperators = {
   product: ProductResponse;
   fetchAllProduct: () => void;
-  updateProduct: (id: number, productData: Partial<Product>) => void;
+  updateProduct: ( id: number,
+    payload: Product) => void;
 };
 
-export const useProductService = (): Readonly<ProductServiceOperators> => {
+export const useProductService = () => {
   const dispatch = useAppDispatch();
 
   // Function to fetch all products
@@ -20,7 +21,8 @@ export const useProductService = (): Readonly<ProductServiceOperators> => {
   }, [dispatch]);
 
   // Function to update a product
-  const updateProduct = useCallback((id: number, productData: Partial<Product>) => dispatch(productActions.updateProduct({ id: id, productData })), [dispatch]);
+  console.log("this update product3")
+  const updateProduct = useCallback((id: number, productData: Product) => dispatch(productActions.updateProduct({ id:id, productData })), [dispatch]);
 
   const product = useAppSelector(selectProduct);
 

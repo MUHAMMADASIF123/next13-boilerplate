@@ -17,11 +17,10 @@ const ProductPage = () => {
   // const products = useSelector((state: RootState) => state.products);
 
   useEffect(() => {
-   
     dispatch(productActions.fetchAll());
   }, [dispatch]);
   return (
-    <Main meta={<Meta title="Next13 Boilerplate" description="Next13 Boilerplate" />}>
+    <Main meta={<Meta title="Next14 Boilerplate" description="Next14 Boilerplate" />}>
       <ProductContainer />
     </Main>
   );
