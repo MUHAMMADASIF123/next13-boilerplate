@@ -21,7 +21,6 @@ export const useProductService = () => {
   }, [dispatch]);
 
   // Function to update a product
-  console.log("this update product3")
   const updateProduct = useCallback((id: number, productData: Product) => dispatch(productActions.updateProduct({ id:id, productData })), [dispatch]);
   const deleteProduct = useCallback((id: number) => {
     dispatch(productActions.deleteProduct({ id }));

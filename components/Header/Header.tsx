@@ -14,7 +14,7 @@ const Header = () => {
           home
         </Link> */}
 
-        <Link href="#" className="mr-5 text-sm font-semibold uppercase leading-tight">
+        <Link href="/" className="mr-5 text-sm font-semibold uppercase leading-tight">
           Product
         </Link>
       </nav>

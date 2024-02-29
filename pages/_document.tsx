@@ -5,7 +5,7 @@ class GlobalDocument extends Document {
   // eslint-disable-next-line class-methods-use-this
   render() {
     return (
-      <Html lang="tr">
+      <Html lang="en">
         <Head />
         <body className="text-black">
           <Main />

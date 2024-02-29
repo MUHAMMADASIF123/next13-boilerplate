@@ -4,20 +4,23 @@ import type { GetServerSideProps, GetServerSidePropsContext } from 'next';
 
 import { Main } from '@/components/Layout/Main';
 import { Meta } from '@/components/Layout/Meta';
-import { ProductContainer } from '@/features/product';
+import { ProductContainer, useProductService } from '@/features/product';
 import { productActions } from '@/features/product/store';
 import dispatchSSR from '@/store/dispatchSSR';
 import { reduxWrapper } from '@/store/store';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { useEffect } from 'react';
 
 const ProductPage = () => {
+  const {fetchAllProduct}=useProductService()
   const dispatch = useDispatch();
   // If you store the products in the Redux state, use useSelector to access them
   // const products = useSelector((state: RootState) => state.products);
 
   useEffect(() => {
-    dispatch(productActions.fetchAll());
+    // dispatch(productActions.fetchAll());
+    fetchAllProduct()
   }, [dispatch]);
   return (
     <Main meta={<Meta title="Next14 Boilerplate" description="Next14 Boilerplate" />}>

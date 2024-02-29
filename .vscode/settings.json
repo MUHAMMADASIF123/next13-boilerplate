@@ -35,5 +35,8 @@
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "javascript.format.insertSpaceAfterOpeningAndBeforeClosingEmptyBraces": false,
-  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingEmptyBraces": false
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingEmptyBraces": false,
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

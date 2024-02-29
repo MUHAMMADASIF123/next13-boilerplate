@@ -8,10 +8,10 @@ import { UserAgent } from '@/libs/types/userAgent.type';
 
 import { Product } from '../../types';
 import { productActions } from '../../store/product.slice';
-import { log } from 'console';
 import { useDispatch } from 'react-redux';
 import Modal from '../Modal/Modal'
 import { update } from 'lodash';
+import { useProductService } from '../../hooks';
 
 
 
@@ -26,13 +26,12 @@ interface ProductItemProps {
 export const ProductItem = ({ products }: ProductItemProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-
-const dispatch=useDispatch()
-
-  const handleUpdateProduct = (productData:any) => {
-    console.log("this update product4")
-    dispatch(productActions.updateProduct({id:productData.id,productData}));
-  };
+  const { updateProduct, deleteProduct } = useProductService();
+const handleUpdateProduct = (productData: Product) => {
+  if (productData.id) {
+    updateProduct(productData.id, productData);
+  }
+};
   const handleOpenModal = (product: Product) => {
     // const product = products?.filter(p => p.id === product.id)
     console.log(product,"product")
@@ -40,8 +39,11 @@ const dispatch=useDispatch()
     setIsModalOpen(true);
   };
   const handleDeleteProduct = (id: number) => {
-    dispatch(productActions.deleteProduct({ id }));
+    deleteProduct(id);
   };
+  // const handleDeleteProduct = (id: number) => {
+  //   // dispatch(productActions.deleteProduct({ id }));
+  // };
 
   return (
     <>
