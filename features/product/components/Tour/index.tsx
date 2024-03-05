@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import Image from 'next/image';
 
 export const Tour = () => {
   return (
@@ -8,10 +7,10 @@ export const Tour = () => {
      
 
       <section className="flex mt-8 container">
-      
-        <div className="w-[50%] aspect-video">
+      <div className='flex flex-col lg:flex-row'>
+        <div className="w-[100%] lg:w-[50%] flex flex-col aspect-video">
           <iframe
-            className=" h-full w-full rounded-lg"
+            className="h-full w-full rounded-lg"
             src="https://www.youtube.com/embed/4WiH9pf2ULQ?si=2TzjHgKzRDOgi528"
             width="100%"
             title="YouTube video player"
@@ -21,7 +20,7 @@ export const Tour = () => {
           ></iframe>
         </div>
 
-        <div className="w-[50%] pl-[12px] flex flex-col pl-[70px]">
+        <div className="w-[100%] lg:w-[50%] lg:pl-[50px] flex flex-col md:pl-[30px]">
           <div className="mb-[10px]">
             <h1 className="font-bold text-4xl text-[#3A6FB6] mb-[10px] ">Video Tour of our Mock SEC Exam Tool</h1>
             <p className="mb-[10px]">
@@ -40,17 +39,11 @@ export const Tour = () => {
             </span>
           </div>
           <div
-            className="w-[137px]
-h-[50px]
-rounded
-bg-gradient-to-r from-sky-300 to-indigo-600
-
-flex justify-center
-text-white
-"
+            className="w-[137px] h-[50px] rounded bg-gradient-to-r from-sky-300 to-indigo-600 flex justify-center text-white"
           >
             <button>Take the Tour</button>
           </div>
+        </div>
         </div>
       </section>
 
