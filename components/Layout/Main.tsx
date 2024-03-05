@@ -11,7 +11,7 @@ type IMainProps = {
 const Main = (props: IMainProps) => (
   <div className="w-full antialiased">
     {props.meta}
-    <Header />
+    {/* <Header /> */}
     {props.children}
     <Footer />
   </div>

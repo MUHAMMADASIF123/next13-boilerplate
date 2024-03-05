@@ -84,6 +84,9 @@ module.exports = {
       backgroundImage: {
         gradient: 'linear-gradient(0deg, #FFFFFF 16.3%, rgba(255, 255, 255, 0) 92.86%)',
       },
+      backgroundImage: {
+        'custom-gradient': "linear-gradient(90.51deg, #991D20 -2.86%, #770F11 101.14%)",
+      }
     },
   },
   plugins: [lineclamp],
