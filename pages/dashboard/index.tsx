@@ -1,25 +1,15 @@
-
-
-
 import { Main } from '@/components/Layout/Main';
 import { Meta } from '@/components/Layout/Meta';
 import Login from '../login';
-import { DashboardPage } from '@/features/product/components/dashboard';
-
+import DashboardPage from '@/features/product/components/dashboard';
+import { ReactNode } from 'react';
+import Layout from '@/components/LayoutTwo';
 
 const Dashboard = () => {
-  
   return (
-  
-    <Main meta={<Meta title="Next14 Boilerplate" description="Next14 Boilerplate" />}>
-    <DashboardPage/>
-        
-      </Main>
-    
-   
+    <Layout>
+      <DashboardPage />
+    </Layout>
   );
 };
-
-
-
 export default Dashboard;
