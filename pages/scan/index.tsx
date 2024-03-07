@@ -3,12 +3,12 @@ import { Meta } from '@/components/Layout/Meta';
 import Login from '../login';
 import DashboardPage from '@/features/product/components/dashboard';
 import Layout from '@/components/LayoutTwo';
-
-const Dashboard = () => {
+import ScanPage from '@/features/product/components/Scan';
+const Scan = () => {
   return (
     <Layout>
-      <DashboardPage />
+      <ScanPage />
     </Layout>
   );
 };
-export default Dashboard;
+export default Scan;

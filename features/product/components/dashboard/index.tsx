@@ -19,12 +19,12 @@ const DashboardPage = () => {
         <span className="text-[28px] text-black-800  ml-4"> Andew Gerdel</span>
       </div>
 
-      <div className="flex justify-center items-center mt-32 gap-y-32 ">
-        <div className="w-[700px] h-[350px] rounded-lg bg-white shadow-2xl flex justify-center flex-col items-center px-4">
+      <div className="flex justify-center items-center  mt-32 gap-y-32 ">
+        <div className="rounded-lg bg-white shadow-2xl flex justify-center flex-col items-center px-4 py-16 max-w-2xl">
           <div>
             <Image src="/icons/svg/reportlogo.svg" width={100} height={100} alt="logo" />
           </div>
-          <div className="mt-8">
+          <div className="mt-8 mb-8">
             <span className="text-[20px] flex justify-center items-center text-center px-32 font-extrabold ">
               To view your Performance Report, select the Reports menu option on the left.
             </span>
